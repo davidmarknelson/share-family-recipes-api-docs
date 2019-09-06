@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=11' />
+    <title>SFR Docs</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href='css/base.css' rel='stylesheet' />
+    <link href='css/style.css' rel='stylesheet' />
+    <link href='css/railscasts.css' rel='stylesheet' />
+  </head>
+  <body>
+    <!--START--><div id='app'><div class="container unlimiter" data-reactroot="" data-reactid="1" data-react-checksum="384765582"><div class="fixed-top fixed-right space-left16" data-reactid="2"><div class="fill-light col6 pin-right" data-reactid="3"></div></div><div class="space-top5 scroll-styled overflow-auto pad1 width16 sidebar fixed-left fill-dark dark" data-reactid="4"><div class="pad0x small" data-reactid="5"><div class="small pad0x quiet space-top1" data-reactid="6">Introduction</div><a href="#share-family-recipes-api" class="line-height15 pad0x pad00y quiet block " data-reactid="7">Share Family Recipes API</a><div class="small pad0x quiet space-top1" data-reactid="8">Base Url</div><a href="#base-url-1" class="line-height15 pad0x pad00y quiet block " data-reactid="9">Base Url</a><div class="small pad0x quiet space-top1" data-reactid="10">Users</div><a href="#users-1" class="line-height15 pad0x pad00y quiet block " data-reactid="11">Users</a><div class="small pad0x quiet space-top1" data-reactid="12">Email Verification</div><a href="#email-verification-1" class="line-height15 pad0x pad00y quiet block " data-reactid="13">Email Verification</a><div class="small pad0x quiet space-top1" data-reactid="14">Passwords</div><a href="#passwords-1" class="line-height15 pad0x pad00y quiet block " data-reactid="15">Passwords</a><div class="small pad0x quiet space-top1" data-reactid="16">Admin</div><a href="#admin-1" class="line-height15 pad0x pad00y quiet block " data-reactid="17">Admin</a><div class="small pad0x quiet space-top1" data-reactid="18">Meals</div><a href="#meals-1" class="line-height15 pad0x pad00y quiet block " data-reactid="19">Meals</a><div class="small pad0x quiet space-top1" data-reactid="20">Searches</div><a href="#searches-1" class="line-height15 pad0x pad00y quiet block " data-reactid="21">Searches</a><div class="small pad0x quiet space-top1" data-reactid="22">Saved Meals</div><a href="#saved-meals-1" class="line-height15 pad0x pad00y quiet block " data-reactid="23">Saved Meals</a><div class="small pad0x quiet space-top1" data-reactid="24">Likes</div><a href="#likes-1" class="line-height15 pad0x pad00y quiet block " data-reactid="25">Likes</a></div></div><div class="space-left16" data-reactid="26"><div class="" data-reactid="27"><div class="clearfix" data-reactid="28"><div data-title="Share Family Recipes API" class="keyline-top section contain clearfix " data-reactid="29"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="30"><h2 id="share-family-recipes-api">Share Family Recipes API</h2>
+<p>Welcome to the Share Family Recipes API! This is our API documentation.</p>
+<p>The API has email verification, password reset, and uses postgresql for the database.</p>
+</div></div><div data-title="Base Url" class="keyline-top section contain clearfix " data-reactid="31"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="32"><h2 id="base-url-1">Base Url</h2>
+<p>Shows a welcome message for the base url of the API.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="33"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/</div>
+    </div>
+<h4 id="example-response-200">Example response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"share-family-recipes-api works!"</span>
+}</pre>
+</div></div><div data-title="Users" class="keyline-top section contain clearfix " data-reactid="34"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="35"><h2 id="users-1">Users</h2>
+</div></div><div data-title="Get Available Username" class="keyline-top section contain clearfix " data-reactid="36"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="37"><h3 id="get-available-username">Get Available Username</h3>
+<p>Checks for username availability.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="38"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/user/available-username?username=<span class="strong">{username}</span></div>
+    </div>
+<h4 id="example-response-200-1">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"This username is available."</span>
+}</pre>
+<h4 id="example-response-400">Example Response (400)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"This username is already taken."</span>
+}</pre>
+</div></div><div data-title="Signup New User" class="keyline-top section contain clearfix " data-reactid="39"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="40"><h3 id="signup-new-user">Signup New User</h3>
+<p>Creates a new user. The request data must be form data.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>username</code></td>
+<td>Username of the new user between 5 and 15 characters and without a space.</td>
+</tr>
+<tr>
+<td><code>firstName</code></td>
+<td>First name of the new user.</td>
+</tr>
+<tr>
+<td><code>lastName</code></td>
+<td>Last name of the new user.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>Email of the new user.</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>Password of at least 8 characters.</td>
+</tr>
+<tr>
+<td><code>passwordConfirmation</code></td>
+<td>Password confirmation of at least 8 characters.</td>
+</tr>
+<tr>
+<td><code>profilePic</code></td>
+<td>(optional) Option to provide a picture to be used as the profile picture. Must be less than 5mb and a JPEG image. To get the image url, add the value of this property to the api url.</td>
+</tr>
+<tr>
+<td><code>adminCode</code></td>
+<td>(optional) Option to include an admin code that matches the code in the api .env file.</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="41"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/user/signup</div>
+    </div>
+<h4 id="example-request-of-form-data">Example Request of Form Data</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"username"</span>: <span class="hljs-string">"johndoe"</span>,
+  <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"John"</span>,
+  <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Doe"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"example@email.com"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"password"</span>,
+  <span class="hljs-attr">"passwordConfirmation"</span>: <span class="hljs-string">"password"</span>,
+  <span class="hljs-attr">"adminCode"</span>: <span class="hljs-string">"123456789"</span>,
+  <span class="hljs-attr">"profilePic"</span>: <span class="hljs-string">"image.jpeg"</span>
+}</pre>
+<h4 id="example-response-201">Example Response (201)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"user"</span>: {
+    <span class="hljs-attr">"isVerified"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">"username"</span>: <span class="hljs-string">"johndoe"</span>,
+    <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"John"</span>,
+    <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Doe"</span>,
+    <span class="hljs-attr">"email"</span>: <span class="hljs-string">"test@email.com"</span>,
+    <span class="hljs-attr">"isAdmin"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"profilePic"</span>: <span class="hljs-string">"public/images/profilePics/johndoe.jpeg"</span>,
+    <span class="hljs-attr">"originalUsername"</span>: <span class="hljs-string">"johndoe"</span>,
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2019-09-03T08:10:49.017Z"</span>,
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2019-09-03T08:10:49.017Z"</span>
+  },
+  <span class="hljs-attr">"jwt"</span>: <span class="hljs-string">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc1ZlcmlmaWVkIjpmYWxzZSwiaWQiOjEsInVzZXJuYW1lIjoiam9obmRvZSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImVtYWlsIjoidGVzdEBlbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJwcm9maWxlUGljIjoicHVibGljL2ltYWdlcy9wcm9maWxlUGljcy9qb2huZG9lLmpwZWciLCJvcmlnaW5hbFVzZXJuYW1lIjoiam9obmRvZSIsInVwZGF0ZWRBdCI6IjIwMTktMDktMDNUMDg6MTA6NDkuMDE3WiIsImNyZWF0ZWRBdCI6IjIwMTktMDktMDNUMDg6MTA6NDkuMDE3WiIsImlhdCI6MTU2NzQ5ODI0OSwiZXhwIjoxNTY4MTAzMDQ5fQ.dtZHA3lHuP4p-lej3ROOZnE5LFp0RMIv9F91hAQyh4E"</span>
+}</pre>
+</div></div><div data-title="Signup New User Errors" class="keyline-top section contain clearfix " data-reactid="42"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="43"><h3 id="signup-new-user-errors">Signup New User Errors</h3>
+<p>On error, the JSON response body includes a <code>message</code> property with a human-readable explanation of the error. If a server error occurs, the HTTP status code will be <code>500</code> or higher.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>400</code></td>
+<td><code>This username is already taken.</code></td>
+<td>A user is already using this username.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td><code>Username must not include a space.</code></td>
+<td>Username included a space.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td><code>Username must be between 5 and 15 characters.</code></td>
+<td>Username was too short or too long.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td><code>This email account is already in use.</code></td>
+<td>A user is already using this email.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td><code>Passwords do not match</code></td>
+<td><code>password</code> and <code>passwordConfirmation</code> must match.</td>
+</tr>
+<tr>
+<td><code>415</code></td>
+<td><code>Please upload a JPEG image.</code></td>
+<td>Image was not a JPEG image.</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td><code>There was an error signing up. Please try again.</code></td>
+<td>A server error occured.</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="Login User" class="keyline-top section contain clearfix " data-reactid="44"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="45"><h3 id="login-user">Login User</h3>
+<p>Logs in a user.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="46"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/user/login</div>
+    </div>
+<h4 id="example-request">Example Request</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"test@email.com"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"password"</span>
+}</pre>
+<h4 id="example-response-200-2">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"user"</span>: {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">"profilePic"</span>: <span class="hljs-string">"public/images/profilePics/johndoe.jpeg"</span>,
+    <span class="hljs-attr">"username"</span>: <span class="hljs-string">"johndoe"</span>,
+    <span class="hljs-attr">"originalUsername"</span>: <span class="hljs-string">"johndoe"</span>,
+    <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"John"</span>,
+    <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Doe"</span>,
+    <span class="hljs-attr">"email"</span>: <span class="hljs-string">"test@email.com"</span>,
+    <span class="hljs-attr">"isVerified"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">"isAdmin"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2019-09-03T08:39:50.743Z"</span>,
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2019-09-03T08:39:50.743Z"</span>,
+    <span class="hljs-attr">"meals"</span>: [],
+    <span class="hljs-attr">"savedMeals"</span>: []
+  },
+  <span class="hljs-attr">"jwt"</span>: <span class="hljs-string">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicHJvZmlsZVBpYyI6InB1YmxpYy9pbWFnZXMvcHJvZmlsZVBpY3Mvam9obmRvZS5qcGVnIiwidXNlcm5hbWUiOiJqb2huZG9lIiwib3JpZ2luYWxVc2VybmFtZSI6ImpvaG5kb2UiLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwiaXNWZXJpZmllZCI6ZmFsc2UsImlzQWRtaW4iOnRydWUsImNyZWF0ZWRBdCI6IjIwMTktMDktMDNUMDg6Mzk6NTAuNzQzWiIsInVwZGF0ZWRBdCI6IjIwMTktMDktMDNUMDg6Mzk6NTAuNzQzWiIsIm1lYWxzIjpbXSwic2F2ZWRNZWFscyI6W10sImlhdCI6MTU2NzQ5OTk5MywiZXhwIjoxNTY4MTA0NzkzfQ.WXAjb1dCT0c6g2IIXYGZtGvt6iuDb0J5_ryerBVc8Kc"</span>
+}</pre>
+</div></div><div data-title="Login User Errors" class="keyline-top section contain clearfix " data-reactid="47"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="48"><h3 id="login-user-errors">Login User Errors</h3>
+<p>On error, the JSON response body includes a <code>message</code> property with a human-readable explanation of the error. If a server error occurs, the HTTP status code will be <code>500</code> or higher.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>400</code></td>
+<td><code>The login information was incorrect.</code></td>
+<td>The email does not exist or the password does not match.</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td><code>There was an error logging in.</code></td>
+<td>Server error.</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="Get Profile" class="keyline-top section contain clearfix " data-reactid="49"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="50"><h3 id="get-profile">Get Profile</h3>
+<p>Returns the profile when supplied with a JWT in the authorization header as a bearer token.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="51"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/user/profile</div>
+    </div>
+<h4 id="example-response-200-3">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"user"</span>: {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">"profilePic"</span>: <span class="hljs-string">"public/images/profilePics/johndoe.jpeg"</span>,
+    <span class="hljs-attr">"username"</span>: <span class="hljs-string">"johndoe"</span>,
+    <span class="hljs-attr">"originalUsername"</span>: <span class="hljs-string">"johndoe"</span>,
+    <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"John"</span>,
+    <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Doe"</span>,
+    <span class="hljs-attr">"email"</span>: <span class="hljs-string">"test@email.com"</span>,
+    <span class="hljs-attr">"isVerified"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">"isAdmin"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2019-09-03T09:43:55.724Z"</span>,
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2019-09-03T09:43:55.724Z"</span>,
+    <span class="hljs-attr">"meals"</span>: [],
+    <span class="hljs-attr">"savedMeals"</span>: []
+  },
+  <span class="hljs-attr">"jwt"</span>: <span class="hljs-string">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicHJvZmlsZVBpYyI6InB1YmxpYy9pbWFnZXMvcHJvZmlsZVBpY3Mvam9obmRvZS5qcGVnIiwidXNlcm5hbWUiOiJqb2huZG9lIiwib3JpZ2luYWxVc2VybmFtZSI6ImpvaG5kb2UiLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwiaXNWZXJpZmllZCI6ZmFsc2UsImlzQWRtaW4iOnRydWUsImNyZWF0ZWRBdCI6IjIwMTktMDktMDNUMDk6NDM6NTUuNzI0WiIsInVwZGF0ZWRBdCI6IjIwMTktMDktMDNUMDk6NDM6NTUuNzI0WiIsIm1lYWxzIjpbXSwic2F2ZWRNZWFscyI6W10sImlhdCI6MTU2NzUwMzg1MywiZXhwIjoxNTY4MTA4NjUzfQ.Ga6zboAb8OXtCiY2XJhUR5oKY8YMlSsEWA0NAOEWNR8"</span>
+}</pre>
+</div></div><div data-title="Update User" class="keyline-top section contain clearfix " data-reactid="52"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="53"><h3 id="update-user">Update User</h3>
+<p>Update a user by supplying data to be updated as form data and attaching a JWT in the authorization header as a bearer token.</p>
+<p>Properties are the same as <code>signup</code>, but it does not accept <code>adminCode</code>, <code>password</code>, or <code>passwordConfirmation</code>. Password updates are handled by a separate route. Update admin status is currently not available after signup.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="54"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/user/update</div>
+    </div>
+<h4 id="example-response-200-4">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"User successfully updated."</span>
+}</pre>
+</div></div><div data-title="Update User Errors" class="keyline-top section contain clearfix " data-reactid="55"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="56"><h3 id="update-user-errors">Update User Errors</h3>
+<p>On error, the JSON response body includes a <code>message</code> property with a human-readable explanation of the error. If a server error occurs, the HTTP status code will be <code>500</code> or higher.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>400</code></td>
+<td><code>This username is already in use.</code></td>
+<td>A user is already using this username.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td><code>Username must not include a space.</code></td>
+<td>Username included a space.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td><code>Username must be between 5 and 15 characters.</code></td>
+<td>Username was too short or too long.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td><code>This email account is already in use.</code></td>
+<td>A user is already using this email.</td>
+</tr>
+<tr>
+<td><code>415</code></td>
+<td><code>Please upload a JPEG image.</code></td>
+<td>Image was not a JPEG image.</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td><code>There was an error updating your profile.</code></td>
+<td>A server error occured.</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="Delete User" class="keyline-top section contain clearfix " data-reactid="57"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="58"><h3 id="delete-user">Delete User</h3>
+<p>Delete user, user's created meals, likes, and saved meals. A JWT must be attached in the authorization header as a bearer token.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="59"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/user/delete</div>
+    </div>
+<h4 id="example-response-200-5">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"User successfully deleted."</span>
+}</pre>
+</div></div><div data-title="Delete User Errors" class="keyline-top section contain clearfix " data-reactid="60"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="61"><h3 id="delete-user-errors">Delete User Errors</h3>
+<p>On error, the JSON response body includes a <code>message</code> property with a human-readable explanation of the error. If a server error occurs, the HTTP status code will be <code>500</code> or higher.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>500</code></td>
+<td><code>There was an error deleting your profile picture.</code></td>
+<td>A server error occured while deleting the profile picture.</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td><code>There was an error deleting a meal picture.</code></td>
+<td>A server error occured while deleting a meal picture.</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td><code>There was an error deleting your profile.</code></td>
+<td>A server error occured.</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="Email Verification" class="keyline-top section contain clearfix " data-reactid="62"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="63"><h2 id="email-verification-1">Email Verification</h2>
+</div></div><div data-title="Send Email Verification Email" class="keyline-top section contain clearfix " data-reactid="64"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="65"><h3 id="send-email-verification-email">Send Email Verification Email</h3>
+<p>Send a post request with the <code>email</code> property in the body.
+This will create a token in the database and send an email to the user with a link that has the token in the url.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="66"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/verify/send</div>
+    </div>
+<h4 id="example-request-1">Example Request</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">email</span>: <span class="hljs-string">"test@email.com"</span>
+}</pre>
+<h4 id="example-response-200-6">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Email has successfully been sent."</span>  
+}</pre>
+<h4 id="example-response-500-server-error">Example Response (500) Server Error</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error sending the email."</span>
+}</pre>
+</div></div><div data-title="Verify Email" class="keyline-top section contain clearfix " data-reactid="67"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="68"><h3 id="verify-email">Verify Email</h3>
+<p>Send a post request with the <code>token</code> property in the body.</p>
+<p>This will check the database for the <code>token</code>. If the token exists, it will change the user's <code>isVerified</code> property from <code>false</code> to <code>true</code>. Tokens are only valid for 2 hours.</p>
+<p>There will only be 1 token associated with a user in the database at any time.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="69"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/verify/</div>
+    </div>
+<h4 id="example-request-2">Example Request</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">token</span>: <span class="hljs-string">"123456789"</span>
+}</pre>
+<h4 id="example-response-200-7">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Your email is now verified."</span>  
+}</pre>
+<h4 id="example-response-404">Example Response (404)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"The token has expired. Please send another verification email."</span>  
+}</pre>
+<h4 id="example-response-500">Example Response (500)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error verifying your email."</span>  
+}</pre>
+</div></div><div data-title="Passwords" class="keyline-top section contain clearfix " data-reactid="70"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="71"><h2 id="passwords-1">Passwords</h2>
+</div></div><div data-title="Password Reset Email" class="keyline-top section contain clearfix " data-reactid="72"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="73"><h3 id="password-reset-email">Password Reset Email</h3>
+<p>This sends an email to the user with a link to reset their password.</p>
+<p>Send a post request with the <code>email</code> in the body of the request. A token will be created that is valid for 2 hours. The token will be in the link that is in the email sent to the user.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="74"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/password/send</div>
+    </div>
+<h4 id="example-request-3">Example Request</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">email</span>: <span class="hljs-string">"test@email.com"</span>
+}</pre>
+<h4 id="example-response-200-8">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"An email has been sent to test@email.com with further instructions."</span>
+}</pre>
+<h4 id="example-response-404-1">Example Response (404)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"No account with that email address exists."</span>
+}</pre>
+<h4 id="example-response-500-1">Example Response (500)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error sending your password reset email."</span>
+}</pre>
+</div></div><div data-title="Reset Password" class="keyline-top section contain clearfix " data-reactid="75"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="76"><h3 id="reset-password">Reset Password</h3>
+<p>Once the user is redirected to the reset password page after clicking on the link in the email, you can send a put request with <code>token</code>, <code>password</code>, and <code>passwordConfirmation</code> properties in the body.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="77"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/password/reset</div>
+    </div>
+<h4 id="example-request-4">Example Request</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">token</span>: <span class="hljs-string">"123456789"</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">"password"</span>,
+  <span class="hljs-attr">passwordConfirmation</span>: <span class="hljs-string">"password"</span>
+}</pre>
+<h4 id="example-response-200-9">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Your password was successfully reset."</span>
+}</pre>
+</div></div><div data-title="Reset Password Errors" class="keyline-top section contain clearfix " data-reactid="78"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="79"><h3 id="reset-password-errors">Reset Password Errors</h3>
+<p>On error, the JSON response body includes a <code>message</code> property with a human-readable explanation of the error. If a server error occurs, the HTTP status code will be <code>500</code> or higher.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>404</code></td>
+<td><code>Password reset token is invalid or has expired.</code></td>
+<td>The token is no longer in the database.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td><code>Passwords do not match.</code></td>
+<td><code>password</code> and <code>passwordConfirmation</code> do not match.</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td><code>There was an error resetting your password.</code></td>
+<td>A server error occured.</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="Update Password" class="keyline-top section contain clearfix " data-reactid="80"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="81"><h3 id="update-password">Update Password</h3>
+<p>This endpoint updates a signed in user's password by sending the new <code>password</code>, <code>passwordConfirmation</code>, and a JWT in the authorization header as a bearer token.</p>
+<p>The password must be at leat 8 characters long.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="82"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/password/update</div>
+    </div>
+<h4 id="example-request-5">Example Request</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">password</span>: <span class="hljs-string">"password"</span>,
+  <span class="hljs-attr">passwordConfirmation</span>: <span class="hljs-string">"password"</span>
+}</pre>
+<h4 id="example-response-200-10">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Your password was successfully updated."</span>
+}</pre>
+</div></div><div data-title="Update Password Errors" class="keyline-top section contain clearfix " data-reactid="83"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="84"><h3 id="update-password-errors">Update Password Errors</h3>
+<p>On error, the JSON response body includes a <code>message</code> property with a human-readable explanation of the error. If a server error occurs, the HTTP status code will be <code>500</code> or higher.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>400</code></td>
+<td><code>Password must be at least 8 characters long.</code></td>
+<td>The password is too short.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td><code>Passwords do not match.</code></td>
+<td><code>password</code> and <code>passwordConfirmation</code> do not match.</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td><code>There was an error updating your password.</code></td>
+<td>A server error occured.</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="Admin" class="keyline-top section contain clearfix " data-reactid="85"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="86"><h2 id="admin-1">Admin</h2>
+</div></div><div data-title="Get List of Users" class="keyline-top section contain clearfix " data-reactid="87"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="88"><h3 id="get-list-of-users">Get List of Users</h3>
+<p>For each endpoint, a JWT for a user who is an admin must be attached in the authorization header as a bearer token.
+Query parameters for <code>offset</code> and <code>limit</code> should be added to each request. If those parameters are not added, the default values will be <code>0</code> and <code>10</code> respectively. All responses are standardized, only the order will change.
+<code>count</code> is used for pagination and <code>rows</code> holds the array of users.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/newusers</code></td>
+<td>Get users from newest to oldest.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/oldusers</code></td>
+<td>Get users from oldest to newest.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/username-a-z</code></td>
+<td>Get users by username from A to Z.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/username-z-a</code></td>
+<td>Get users by username from Z to A.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/firstname-a-z</code></td>
+<td>Get users by first name from A to Z.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/firstname-z-a</code></td>
+<td>Get users by first name from Z to A.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/lastname-a-z</code></td>
+<td>Get users by last name from A to Z.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/lastname-z-a</code></td>
+<td>Get users by last name from Z to A.</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="89"><h4 id="example-endpoint">Example Endpoint</h4>
+<div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/admin/newusers?offset=<span class="strong">{0}</span>&limit=<span class="strong">{10}</span></div>
+    </div>
+<h4 id="example-reponse-200">Example Reponse (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"count"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"rows"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"username"</span>: <span class="hljs-string">"johndoe"</span>,
+      <span class="hljs-attr">"profilePic"</span>: <span class="hljs-literal">null</span>,
+      <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"John"</span>,
+      <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Doe"</span>,
+      <span class="hljs-attr">"email"</span>: <span class="hljs-string">"test@email.com"</span>,
+      <span class="hljs-attr">"isVerified"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"isAdmin"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2019-09-04T00:54:34.148Z"</span>,
+      <span class="hljs-attr">"meals"</span>: [
+        { <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span> }
+      ]
+    }
+  ]
+}</pre>
+<h4 id="example-reponse-403-for-users-who-are-not-admin-users">Example Reponse (403) for users who are not admin users</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"You do not have permission to access this service."</span>
+}</pre>
+<h4 id="example-response-500-server-error-1">Example Response (500) Server Error</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error getting the list of users."</span>
+}</pre>
+</div></div><div data-title="Meals" class="keyline-top section contain clearfix " data-reactid="90"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="91"><h2 id="meals-1">Meals</h2>
+</div></div><div data-title="Get Available Meal Name" class="keyline-top section contain clearfix " data-reactid="92"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="93"><h3 id="get-available-meal-name">Get Available Meal Name</h3>
+<p>Checks for meal name availability.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="94"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/meals/available-names?name=<span class="strong">{nameofmeal}</span></div>
+    </div>
+<h4 id="example-response-200-11">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"This meal name is available."</span>
+}</pre>
+<h4 id="example-response-400-1">Example Response (400)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"This meal name is already taken."</span>
+}</pre>
+</div></div><div data-title="Create Meal" class="keyline-top section contain clearfix " data-reactid="95"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="96"><h3 id="create-meal">Create Meal</h3>
+<p>Creates a new meal. The request data must be form data. The user's JWT must also be added to the authorization header as a bearer token.</p>
+<p>A successful response will contain the id of the meal and a message.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>The name of the meal.</td>
+</tr>
+<tr>
+<td><code>ingredients</code></td>
+<td>This is an array of ingredients.</td>
+</tr>
+<tr>
+<td><code>instructions</code></td>
+<td>This is an array of each step of the instructions.</td>
+</tr>
+<tr>
+<td><code>cookTime</code></td>
+<td>This is the number of minutes it takes to create the meal. This must be a number</td>
+</tr>
+<tr>
+<td><code>difficulty</code></td>
+<td>This is a number, 1 - 5, to show how difficult it is to make the meal.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>This is a short description of the meal.</td>
+</tr>
+<tr>
+<td><code>mealPic</code></td>
+<td>(optional) This is a JPEG image of the meal. It must be less than 5mb.</td>
+</tr>
+<tr>
+<td><code>originalRecipeUrl</code></td>
+<td>(optional) This is the original url of the recipe if the user got the recipe from the internet.</td>
+</tr>
+<tr>
+<td><code>youtubeUrl</code></td>
+<td>(optional) This is the url of the YouTube video of the meal if the user got the recipe from a YouTube video.</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="97"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/meals/create</div>
+    </div>
+<h4 id="example-response-200-12">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Meal successfully created."</span>
+}</pre>
+</div></div><div data-title="Create Meal Errors" class="keyline-top section contain clearfix " data-reactid="98"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="99"><h3 id="create-meal-errors">Create Meal Errors</h3>
+<p>On error, the JSON response body includes a <code>message</code> property with a human-readable explanation of the error. If a server error occurs, the HTTP status code will be <code>500</code> or higher.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>400</code></td>
+<td><code>This meal name is already taken.</code></td>
+<td>The meal name is already being used.</td>
+</tr>
+<tr>
+<td><code>415</code></td>
+<td><code>Please upload a JPEG image.</code></td>
+<td>Image was not a JPEG image.</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td><code>There was an error creating your meal.</code></td>
+<td>A server error occured.</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="Get Meal" class="keyline-top section contain clearfix " data-reactid="100"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="101"><h3 id="get-meal">Get Meal</h3>
+<p>Send the name of the meal in the <code>name</code> query parameter to get the meal data.</p>
+<p>To get the image, add the value of the property <code>mealPic</code> to the API url.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="102"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/meals/meal?name=<span class="strong">{nameofmeal}</span></div>
+    </div>
+<h4 id="example-response-200-13">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Eggs and Rice"</span>,
+  <span class="hljs-attr">"ingredients"</span>: [
+    <span class="hljs-string">"3 eggs"</span>,
+    <span class="hljs-string">"rice"</span>,
+    <span class="hljs-string">"vegetables"</span>
+  ],
+  <span class="hljs-attr">"instructions"</span>: [
+    <span class="hljs-string">"cooks eggs"</span>,
+    <span class="hljs-string">"cook rice"</span>,
+    <span class="hljs-string">"mix and serve"</span>
+  ],
+  <span class="hljs-attr">"cookTime"</span>: <span class="hljs-number">20</span>,
+  <span class="hljs-attr">"difficulty"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A delicious and easy dish."</span>,
+  <span class="hljs-attr">"originalRecipeUrl"</span>: <span class="hljs-string">"www.recipe.com"</span>,
+  <span class="hljs-attr">"youtubeUrl"</span>: <span class="hljs-string">"www.video.com"</span>,
+  <span class="hljs-attr">"mealPic"</span>: <span class="hljs-string">"public/images/mealPics/eggs-and-rice.jpeg"</span>,
+  <span class="hljs-attr">"creatorId"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"originalName"</span>: <span class="hljs-string">"eggs-and-rice"</span>,
+  <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2019-09-04T07:59:06.815Z"</span>,
+  <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2019-09-04T07:59:06.815Z"</span>
+}</pre>
+<h4 id="example-response-404-2">Example Response (404)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"That meal does not exist."</span>
+}</pre>
+</div></div><div data-title="Update Meal" class="keyline-top section contain clearfix " data-reactid="103"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="104"><h3 id="update-meal">Update Meal</h3>
+<p>Update a meal by supplying data to be updated as form data, attaching a JWT in the authorization header as a bearer token, and adding the meal id as an <code>id</code> property.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="105"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/meals/update</div>
+    </div>
+<h4 id="example-request-of-form-data-1">Example Request of Form Data</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Eggs, Chicken, and Rice"</span>,
+  <span class="hljs-attr">"ingredients"</span>: [
+    <span class="hljs-string">"3 eggs"</span>,
+    <span class="hljs-string">"rice"</span>,
+    <span class="hljs-string">"vegetables"</span>
+  ],
+  <span class="hljs-attr">"instructions"</span>: [
+    <span class="hljs-string">"cooks eggs"</span>,
+    <span class="hljs-string">"cook rice"</span>,
+    <span class="hljs-string">"mix and serve"</span>
+  ],
+  <span class="hljs-attr">"difficulty"</span>: <span class="hljs-number">2</span>
+}</pre>
+<h4 id="example-response-200-14">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Meal successfully updated."</span>
+}</pre>
+</div></div><div data-title="Update Meal Errors" class="keyline-top section contain clearfix " data-reactid="106"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="107"><h3 id="update-meal-errors">Update Meal Errors</h3>
+<p>On error, the JSON response body includes a <code>message</code> property with a human-readable explanation of the error. If a server error occurs, the HTTP status code will be <code>500</code> or higher.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>400</code></td>
+<td><code>This meal name is already taken.</code></td>
+<td>The meal name is already being used.</td>
+</tr>
+<tr>
+<td><code>415</code></td>
+<td><code>Please upload a JPEG image.</code></td>
+<td>Image was not a JPEG image.</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td><code>There was an error updating your meal.</code></td>
+<td>A server error occured.</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="Meal Delete" class="keyline-top section contain clearfix " data-reactid="108"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="109"><h3 id="meal-delete">Meal Delete</h3>
+<p>To delete a meal, add the creator's JWT as a bearer token in the authorization header. In the body of the request, add the id of the meal.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="110"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>DELETE</div>
+      <div class='pad0 code small endpoint-url'>/meals/delete</div>
+    </div>
+<h4 id="example-request-6">Example Request</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>
+}</pre>
+<h4 id="example-response-200-15">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Meal successfully deleted."</span>
+}</pre>
+<h4 id="example-response-500-server-errors">Example Response (500) Server Errors</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error deleting your meal picture."</span>
+}</pre>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error deleting your meal."</span>
+}</pre>
+</div></div><div data-title="Searches" class="keyline-top section contain clearfix " data-reactid="111"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="112"><h2 id="searches-1">Searches</h2>
+</div></div><div data-title="Get List of Meals" class="keyline-top section contain clearfix " data-reactid="113"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="114"><h3 id="get-list-of-meals">Get List of Meals</h3>
+<p>For the 4 endpoints below, all responses are standardized, only the order will change.</p>
+<p>Query parameters for <code>offset</code> and <code>limit</code> should be added to each request. If those parameters are not added, the default values will be <code>0</code> and <code>10</code> respectively.</p>
+<p>In the response, <code>count</code> is the total number meals to user for pagination and <code>rows</code> contains the array of meals.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/search/newest</code></td>
+<td>Get meals from newest to oldest.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/search/oldest</code></td>
+<td>Get meals from oldest to newest.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/search/names-a-z</code></td>
+<td>Get meals by name from A to Z.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/search/names-z-a</code></td>
+<td>Get meals by name from Z to A.</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="115"><h4 id="example-endpoint-1">Example Endpoint</h4>
+<div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/search/newest?offset=<span class="strong">{0}</span>&limit=<span class="strong">{10}</span></div>
+    </div>
+<h4 id="example-response-200-16">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"count"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"rows"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"difficulty"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"mealPic"</span>: <span class="hljs-string">"public/images/mealPics/Eggs-and-Rice.jpeg"</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Eggs and Rice"</span>,
+      <span class="hljs-attr">"cookTime"</span>: <span class="hljs-number">20</span>,
+      <span class="hljs-attr">"creatorId"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"creator"</span>: {
+        <span class="hljs-attr">"username"</span>: <span class="hljs-string">"johndoe"</span>,
+        <span class="hljs-attr">"profilePic"</span>: <span class="hljs-literal">null</span>
+      },
+      <span class="hljs-attr">"likes"</span>: [
+        { <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span> }
+      ]
+    }
+  ]
+}</pre>
+<h4 id="example-response-404-3">Example Response (404)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There are no meals."</span>
+}</pre>
+<h4 id="example-response-500-2">Example Response (500)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error getting the list of meals."</span>
+}</pre>
+</div></div><div data-title="Get Meals Created By a User" class="keyline-top section contain clearfix " data-reactid="116"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="117"><h3 id="get-meals-created-by-a-user">Get Meals Created By a User</h3>
+<p>For the 4 endpoints below, all responses are standardized, only the order of the meals will change.</p>
+<p>Query parameters for <code>offset</code> and <code>limit</code> should be added to each request. If those parameters are not added, the default values will be <code>0</code> and <code>10</code> respectively.</p>
+<p>A query parameter for <code>username</code> must be added to the request.</p>
+<p>For the response, <code>rows</code> contains the array of meals, <code>count</code> contains the number of meals created by the user to be used for pagination. <code>id</code>, <code>username</code>, and <code>profilePic</code> are the user's display information.</p>
+<p>If the user has not created any meals, <code>rows</code> will be an empty array.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/search/byuser-a-z</code></td>
+<td>Get meals created by a user listed in alphabetical order.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/search/byuser-a-z</code></td>
+<td>Get meals created by a user listed in reverse alphabetical order.</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="118"><h4 id="example-endpoint-2">Example Endpoint</h4>
+<div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/search/byuser-a-z?name=<span class="strong">{johndoe}</span>&offset=<span class="strong">{0}</span>&limit=<span class="strong">{10}</span></div>
+    </div>
+<h4 id="example-response-200-17">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"username"</span>: <span class="hljs-string">"johndoe"</span>,
+  <span class="hljs-attr">"profilePic"</span>: <span class="hljs-literal">null</span>,
+  <span class="hljs-attr">"count"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"rows"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"difficulty"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"mealPic"</span>: <span class="hljs-literal">null</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Eggs and Rice"</span>,
+      <span class="hljs-attr">"cookTime"</span>: <span class="hljs-number">20</span>,
+      <span class="hljs-attr">"creatorId"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"creator"</span>: {
+        <span class="hljs-attr">"username"</span>: <span class="hljs-string">"johndoe"</span>,
+        <span class="hljs-attr">"profilePic"</span>: <span class="hljs-literal">null</span>
+      },
+      <span class="hljs-attr">"likes"</span>: [
+        { <span class="hljs-attr">"id"</span>: <span class="hljs-number">2</span> }
+      ]
+    }
+  ]
+}</pre>
+<h4 id="example-response-404-4">Example Response (404)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"This user does not exist."</span>
+}</pre>
+<h4 id="example-response-500-3">Example Response (500)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error getting the list of meals."</span>
+}</pre>
+</div></div><div data-title="Search for Meals by Ingredients" class="keyline-top section contain clearfix " data-reactid="119"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="120"><h3 id="search-for-meals-by-ingredients">Search for Meals by Ingredients</h3>
+<p>For the 4 endpoints below, all responses are standardized, only the order of the meals will change.</p>
+<p>Query parameters for <code>offset</code> and <code>limit</code> should be added to each request. If those parameters are not added, the default values will be <code>0</code> and <code>10</code> respectively.</p>
+<p>Ingredients must be added to the query parameter <code>ingredient</code>.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/search/byingredients-a-z</code></td>
+<td>Get meals with specific ingredients listed in alphabetical order.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/search/byingredients-z-a</code></td>
+<td>Get meals with specific ingredients listed in reverse alphabetical order.</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="121"><h4 id="example-endpoint-3">Example Endpoint</h4>
+<div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/search/byingredients-a-z?ingredient=<span class="strong">{egg}</span>&ingredient=<span class="strong">{rice}</span>&offset=<span class="strong">{0}</span>&limit=<span class="strong">{10}</span></div>
+    </div>
+<h4 id="example-response-200-18">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"count"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"rows"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"difficulty"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"mealPic"</span>: <span class="hljs-literal">null</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Eggs and Rice"</span>,
+      <span class="hljs-attr">"cookTime"</span>: <span class="hljs-number">20</span>,
+      <span class="hljs-attr">"creatorId"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"creator"</span>: {
+        <span class="hljs-attr">"username"</span>: <span class="hljs-string">"johndoe"</span>,
+        <span class="hljs-attr">"profilePic"</span>: <span class="hljs-literal">null</span>
+      },
+      <span class="hljs-attr">"likes"</span>: []
+    }
+  ]
+}</pre>
+</div></div><div data-title="Search for Meals by Ingredients Errors" class="keyline-top section contain clearfix " data-reactid="122"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="123"><h3 id="search-for-meals-by-ingredients-errors">Search for Meals by Ingredients Errors</h3>
+<p>On error, the JSON response body includes a <code>message</code> property with a human-readable explanation of the error. If a server error occurs, the HTTP status code will be <code>500</code> or higher.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>400</code></td>
+<td><code>You must add ingredients to the search.</code></td>
+<td>No ingredients were added to the search.</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td><code>There are no meals with those ingredients.</code></td>
+<td>No meals match the request.</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td><code>There was an error getting the list of meals.</code></td>
+<td>A server error occured.</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="Get List of Meals By Name" class="keyline-top section contain clearfix " data-reactid="124"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="125"><h3 id="get-list-of-meals-by-name">Get List of Meals By Name</h3>
+<p>This endpoint is for autocompleting searches. It will return an array of the first 10 meals that contain the searched word in the name. It is case insensitive.</p>
+<p>If there are no meals that match the search, the server will respond with a status of <code>200</code> and an empty array.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="126"><h4 id="example-endpoint-4">Example Endpoint</h4>
+<div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/search/name?name=<span class="strong">{egg}</span></div>
+    </div>
+<h4 id="example-response-200-19">Example Response (200)</h4>
+<pre class='hljs'>[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Eggs and Rice"</span>
+  }
+]</pre>
+<h4 id="example-response-500-4">Example Response (500)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error getting the list of meals."</span>
+}</pre>
+</div></div><div data-title="Saved Meals" class="keyline-top section contain clearfix " data-reactid="127"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="128"><h2 id="saved-meals-1">Saved Meals</h2>
+</div></div><div data-title="Get User&#x27;s Saved Meals" class="keyline-top section contain clearfix " data-reactid="129"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="130"><h3 id="get-users-saved-meals">Get User's Saved Meals</h3>
+<p>For the 4 endpoints below, both responses are standardized, only the order will change.</p>
+<p>Add the user's JWT to the authorization header as a bearer token.</p>
+<p>Query parameters for <code>offset</code> and <code>limit</code> should be added to each request. If those parameters are not added, the default values will be <code>0</code> and <code>10</code> respectively.</p>
+<p>In the response, <code>count</code> is the total number meals to user for pagination and <code>rows</code> contains the array of meals.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/saved/a-z</code></td>
+<td>Get saved meals by name from A to Z.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/saved/z-a</code></td>
+<td>Get saved meals by name from A to Z.</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="131"><h4 id="example-endpoint-5">Example Endpoint</h4>
+<div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/saved/a-z?offset=<span class="strong">{0}</span>&limit=<span class="strong">{10}</span></div>
+    </div>
+<h4 id="example-response-200-20">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"count"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"rows"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"difficulty"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"mealPic"</span>: <span class="hljs-literal">null</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Eggs and Rice"</span>,
+      <span class="hljs-attr">"cookTime"</span>: <span class="hljs-number">20</span>,
+      <span class="hljs-attr">"creatorId"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"creator"</span>: {
+        <span class="hljs-attr">"username"</span>: <span class="hljs-string">"johndoe"</span>,
+        <span class="hljs-attr">"profilePic"</span>: <span class="hljs-literal">null</span>
+      },
+      <span class="hljs-attr">"likes"</span>: []
+    }
+  ]
+}</pre>
+<h4 id="example-response-404-5">Example Response (404)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"You have not saved any meals."</span>
+}</pre>
+<h4 id="example-response-500-5">Example Response (500)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error getting your list of saved meals."</span>
+}</pre>
+</div></div><div data-title="Save meal" class="keyline-top section contain clearfix " data-reactid="132"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="133"><h3 id="save-meal">Save meal</h3>
+<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>mealId</code> to the body of a POST request.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="134"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/saved/save</div>
+    </div>
+<h4 id="example-response-200-21">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Meal successfully saved."</span>
+}</pre>
+<h4 id="example-response-500-6">Example Response (500)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error saving this meal."</span>
+}</pre>
+</div></div><div data-title="Unsave Meal" class="keyline-top section contain clearfix " data-reactid="135"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="136"><h3 id="unsave-meal">Unsave Meal</h3>
+<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>mealId</code> to the body of a DELETE request.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="137"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>DELETE</div>
+      <div class='pad0 code small endpoint-url'>/saved/unsave</div>
+    </div>
+<h4 id="example-response-200-22">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Meal successfully unsaved."</span>
+}</pre>
+<h4 id="example-response-500-7">Example Response (500)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error unsaving this meal."</span>
+}</pre>
+</div></div><div data-title="Likes" class="keyline-top section contain clearfix " data-reactid="138"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="139"><h2 id="likes-1">Likes</h2>
+</div></div><div data-title="Add Like" class="keyline-top section contain clearfix " data-reactid="140"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="141"><h3 id="add-like">Add Like</h3>
+<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>mealId</code> to the body of a POST request.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="142"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/likes/add</div>
+    </div>
+<h4 id="example-response-200-23">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Meal successfully liked."</span>
+}</pre>
+<h4 id="example-response-400-2">Example Response (400)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"You have already liked this meal."</span>
+}</pre>
+<h4 id="example-response-500-8">Example Response (500)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error liking this meal."</span>
+}</pre>
+</div></div><div data-title="Remove Like" class="keyline-top section contain clearfix " data-reactid="143"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="144"><h3 id="remove-like">Remove Like</h3>
+<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>mealId</code> to the body of a DELETE request.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="145"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>DELETE</div>
+      <div class='pad0 code small endpoint-url'>/likes/remove</div>
+    </div>
+<h4 id="example-response-200-24">Example Response (200)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Meal successfully unliked."</span>
+}</pre>
+<h4 id="example-response-500-9">Example Response (500)</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error unliking this meal."</span>
+}</pre>
+</div></div></div></div></div><div class="fixed-top space-left16" data-reactid="146"><div class="events fill-light bottom-shadow pad1 col6 pin-topright  " data-reactid="147"><div class="space-right1 small quiet inline" data-reactid="148">Show examples in:</div><div class="rounded-toggle inline short" data-reactid="149"><a class="strong active" data-reactid="150">JS</a></div><div class="fr pad0" data-reactid="151"><a title="Display as 1 column" style="cursor:pointer;" class="icon quiet caret-left pad0 fill-darken0 round" data-reactid="152"></a></div></div></div><div class="fill-dark dark bottom-shadow fixed-top pad0 width16" data-reactid="153"><a href="/" class="active space-top1 space-left1 pin-topleft icon round dark pad0 fill-red" data-reactid="154"></a><div class="strong small pad0
+          
+          space-left4 line-height15" data-reactid="155">Share Family Recipes API Documentation</div></div></div></div><!--STOP-->
+    <script src='bundle.js'></script>
+  </body>
+</html>
