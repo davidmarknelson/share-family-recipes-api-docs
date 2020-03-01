@@ -10,7 +10,7 @@
     <link href='css/railscasts.css' rel='stylesheet' />
   </head>
   <body>
-    <!--START--><div id='app'><div class="container unlimiter" data-reactroot="" data-reactid="1" data-react-checksum="649261040"><div class="fixed-top fixed-right space-left16" data-reactid="2"><div class="fill-light col6 pin-right" data-reactid="3"></div></div><div class="space-top5 scroll-styled overflow-auto pad1 width16 sidebar fixed-left fill-dark dark" data-reactid="4"><div class="pad0x small" data-reactid="5"><div class="small pad0x quiet space-top1" data-reactid="6">Introduction</div><a href="#share-family-recipes-api" class="line-height15 pad0x pad00y quiet block " data-reactid="7">Share Family Recipes API</a><div class="small pad0x quiet space-top1" data-reactid="8">Base Url</div><a href="#base-url-1" class="line-height15 pad0x pad00y quiet block " data-reactid="9">Base Url</a><div class="small pad0x quiet space-top1" data-reactid="10">Users</div><a href="#users-1" class="line-height15 pad0x pad00y quiet block " data-reactid="11">Users</a><div class="small pad0x quiet space-top1" data-reactid="12">Email Verification</div><a href="#email-verification-1" class="line-height15 pad0x pad00y quiet block " data-reactid="13">Email Verification</a><div class="small pad0x quiet space-top1" data-reactid="14">Passwords</div><a href="#passwords-1" class="line-height15 pad0x pad00y quiet block " data-reactid="15">Passwords</a><div class="small pad0x quiet space-top1" data-reactid="16">Admin</div><a href="#admin-1" class="line-height15 pad0x pad00y quiet block " data-reactid="17">Admin</a><div class="small pad0x quiet space-top1" data-reactid="18">Meals</div><a href="#meals-1" class="line-height15 pad0x pad00y quiet block " data-reactid="19">Meals</a><div class="small pad0x quiet space-top1" data-reactid="20">Searches</div><a href="#searches-1" class="line-height15 pad0x pad00y quiet block " data-reactid="21">Searches</a><div class="small pad0x quiet space-top1" data-reactid="22">Saved Meals</div><a href="#saved-meals-1" class="line-height15 pad0x pad00y quiet block " data-reactid="23">Saved Meals</a><div class="small pad0x quiet space-top1" data-reactid="24">Likes</div><a href="#likes-1" class="line-height15 pad0x pad00y quiet block " data-reactid="25">Likes</a><div class="small pad0x quiet space-top1" data-reactid="26">Tests</div><a href="#tests-1" class="line-height15 pad0x pad00y quiet block " data-reactid="27">Tests</a></div></div><div class="space-left16" data-reactid="28"><div class="" data-reactid="29"><div class="clearfix" data-reactid="30"><div data-title="Share Family Recipes API" class="keyline-top section contain clearfix " data-reactid="31"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="32"><h2 id="share-family-recipes-api">Share Family Recipes API</h2>
+    <!--START--><div id='app'><div class="container unlimiter" data-reactroot="" data-reactid="1" data-react-checksum="1221784788"><div class="fixed-top fixed-right space-left16" data-reactid="2"><div class="fill-light col6 pin-right" data-reactid="3"></div></div><div class="space-top5 scroll-styled overflow-auto pad1 width16 sidebar fixed-left fill-dark dark" data-reactid="4"><div class="pad0x small" data-reactid="5"><div class="small pad0x quiet space-top1" data-reactid="6">Introduction</div><a href="#share-family-recipes-api" class="line-height15 pad0x pad00y quiet block " data-reactid="7">Share Family Recipes API</a><div class="small pad0x quiet space-top1" data-reactid="8">Base Url</div><a href="#base-url-1" class="line-height15 pad0x pad00y quiet block " data-reactid="9">Base Url</a><div class="small pad0x quiet space-top1" data-reactid="10">Users</div><a href="#users-1" class="line-height15 pad0x pad00y quiet block " data-reactid="11">Users</a><div class="small pad0x quiet space-top1" data-reactid="12">Email Verification</div><a href="#email-verification-1" class="line-height15 pad0x pad00y quiet block " data-reactid="13">Email Verification</a><div class="small pad0x quiet space-top1" data-reactid="14">Passwords</div><a href="#passwords-1" class="line-height15 pad0x pad00y quiet block " data-reactid="15">Passwords</a><div class="small pad0x quiet space-top1" data-reactid="16">Admin</div><a href="#admin-1" class="line-height15 pad0x pad00y quiet block " data-reactid="17">Admin</a><div class="small pad0x quiet space-top1" data-reactid="18">Meals</div><a href="#meals-1" class="line-height15 pad0x pad00y quiet block " data-reactid="19">Meals</a><div class="small pad0x quiet space-top1" data-reactid="20">Searches</div><a href="#searches-1" class="line-height15 pad0x pad00y quiet block " data-reactid="21">Searches</a><div class="small pad0x quiet space-top1" data-reactid="22">Saved Meals</div><a href="#saved-meals-1" class="line-height15 pad0x pad00y quiet block " data-reactid="23">Saved Meals</a><div class="small pad0x quiet space-top1" data-reactid="24">Likes</div><a href="#likes-1" class="line-height15 pad0x pad00y quiet block " data-reactid="25">Likes</a><div class="small pad0x quiet space-top1" data-reactid="26">Tests</div><a href="#tests-1" class="line-height15 pad0x pad00y quiet block " data-reactid="27">Tests</a></div></div><div class="space-left16" data-reactid="28"><div class="" data-reactid="29"><div class="clearfix" data-reactid="30"><div data-title="Share Family Recipes API" class="keyline-top section contain clearfix " data-reactid="31"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="32"><h2 id="share-family-recipes-api">Share Family Recipes API</h2>
 <p>Welcome to the Share Family Recipes API! This is our API documentation.</p>
 <p>The API has email verification, password reset, and postgresql for the database.</p>
 <p>Services used that require setup.  </p>
@@ -762,7 +762,8 @@ The responses will either have a status of <code>204</code> for available names 
 }</pre>
 </div></div><div data-title="Searches" class="keyline-top section contain clearfix " data-reactid="116"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="117"><h2 id="searches-1">Searches</h2>
 </div></div><div data-title="Get List of Meals" class="keyline-top section contain clearfix " data-reactid="118"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="119"><h3 id="get-list-of-meals">Get List of Meals</h3>
-<p>For the 4 endpoints below, all responses are standardized, only the order will change.</p>
+<p>For the 4 endpoints below, all responses are standardized, only the order will change.  </p>
+<p>All recipe objects with <code>likes</code> and <code>savedRecipes</code> will be ascending ordered arrays.  </p>
 <p>Query parameters for <code>offset</code> and <code>limit</code> should be added to each request. If those parameters are not added, the default values will be <code>0</code> and <code>10</code> respectively.</p>
 <p>In the response, <code>count</code> is the total number meals to user for pagination and <code>rows</code> contains the array of meals.</p>
 <table>
@@ -1077,44 +1078,42 @@ The responses will either have a status of <code>204</code> for available names 
   <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error getting your list of saved recipes."</span>
 }</pre>
 </div></div><div data-title="Save meal" class="keyline-top section contain clearfix " data-reactid="137"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="138"><h3 id="save-meal">Save meal</h3>
-<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>recipeId</code> to the body of a POST request.</p>
+<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>recipeId</code> to the body of a POST request. It will return an array of the meal's users who have saved the meal.</p>
 </div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="139"><div class='endpoint dark fill-dark round '>
       <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
       <div class='pad0 code small endpoint-url'>/saved/save</div>
     </div>
 <h4 id="example-response-200-19">Example Response (200)</h4>
-<pre class='hljs'>{
-  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Recipe successfully saved."</span>
-}</pre>
+<pre class='hljs'>[
+  { <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span> }
+]</pre>
 <h4 id="example-response-500-6">Example Response (500)</h4>
 <pre class='hljs'>{
   <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error saving this recipe."</span>
 }</pre>
 </div></div><div data-title="Unsave Meal" class="keyline-top section contain clearfix " data-reactid="140"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="141"><h3 id="unsave-meal">Unsave Meal</h3>
-<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>recipeId</code> to the body of a DELETE request.</p>
+<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>recipeId</code> to the body of a DELETE request. On success, it will return a success with a status of <code>204</code> and no content in the body.  </p>
 </div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="142"><div class='endpoint dark fill-dark round '>
       <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>DELETE</div>
       <div class='pad0 code small endpoint-url'>/saved/unsave</div>
     </div>
-<h4 id="example-response-200-20">Example Response (200)</h4>
-<pre class='hljs'>{
-  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Recipe successfully unsaved."</span>
-}</pre>
 <h4 id="example-response-500-7">Example Response (500)</h4>
 <pre class='hljs'>{
   <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error unsaving this recipe."</span>
 }</pre>
 </div></div><div data-title="Likes" class="keyline-top section contain clearfix " data-reactid="143"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="144"><h2 id="likes-1">Likes</h2>
 </div></div><div data-title="Add Like" class="keyline-top section contain clearfix " data-reactid="145"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="146"><h3 id="add-like">Add Like</h3>
-<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>recipeId</code> to the body of a POST request.</p>
+<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>recipeId</code> to the body of a POST request. It will return an array of users who have liked the meal.</p>
 </div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="147"><div class='endpoint dark fill-dark round '>
       <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
       <div class='pad0 code small endpoint-url'>/likes/add</div>
     </div>
-<h4 id="example-response-200-21">Example Response (200)</h4>
-<pre class='hljs'>{
-  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Recipe successfully liked."</span>
-}</pre>
+<h4 id="example-response-200-20">Example Response (200)</h4>
+<pre class='hljs'>[
+  {
+    <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span>
+  }
+]</pre>
 <h4 id="example-response-400">Example Response (400)</h4>
 <pre class='hljs'>{
   <span class="hljs-attr">"message"</span>: <span class="hljs-string">"You have already liked this recipe."</span>
@@ -1124,15 +1123,11 @@ The responses will either have a status of <code>204</code> for available names 
   <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error liking this recipe."</span>
 }</pre>
 </div></div><div data-title="Remove Like" class="keyline-top section contain clearfix " data-reactid="148"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="149"><h3 id="remove-like">Remove Like</h3>
-<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>recipeId</code> to the body of a DELETE request.</p>
+<p>Add the user's JWT to the authorization header as a bearer token and the id of the meal in the property <code>recipeId</code> to the body of a DELETE request. On success, it will return a success with a status of <code>204</code> and no content in the body.  </p>
 </div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="150"><div class='endpoint dark fill-dark round '>
       <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>DELETE</div>
       <div class='pad0 code small endpoint-url'>/likes/remove</div>
     </div>
-<h4 id="example-response-200-22">Example Response (200)</h4>
-<pre class='hljs'>{
-  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Recipe successfully unliked."</span>
-}</pre>
 <h4 id="example-response-500-9">Example Response (500)</h4>
 <pre class='hljs'>{
   <span class="hljs-attr">"message"</span>: <span class="hljs-string">"There was an error unliking this recipe."</span>
